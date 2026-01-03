@@ -4,7 +4,7 @@ You need clang installed in your machine in order to compile.
 
 Just need to run 
 
-```./compile.sh```
+```make```
 
 and enjoy.
 
