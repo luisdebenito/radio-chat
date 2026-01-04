@@ -1,21 +1,18 @@
 #pragma once
+#include "../common/package.hpp"
 #include <condition_variable>
 #include <deque>
 #include <mutex>
-#include <vector>
 
-class WaveFormQueue {
+class PackageQueue {
 public:
-  void push(std::vector<float> &&wf);
-  std::vector<float> pop();
+  void push(Package &&pkg);
+  Package pop();
   bool empty() const;
   size_t size() const;
 
 private:
-  // lock
   mutable std::mutex m;
   std::condition_variable cv;
-
-  // Double ended queue
-  std::deque<std::vector<float>> q;
+  std::deque<Package> q;
 };

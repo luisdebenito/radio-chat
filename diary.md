@@ -83,3 +83,20 @@ AFAI have read, the most reliable way to create the waveform from the serialized
 I am going to focus on the transmission for now. I have realiced we'll probably need a queue so we can stack all the waveforms that the device needs to send. I don't know if I will wait for an ACK message back, or just give it an expiration date, and send my messages for like a day to then expire them. 
 
 I am thinking that queue instead of saving it to the RAM memory, should be stored in a bucket or smth. Still to decide. Cause maybe there'll be huge amount of info there, or maybe not. Everything is unknown.
+
+
+## 03/01/2026
+
+Happy new year. I have explained the whole idea to a couple engineering friends and it doesn't look bad at all. It actually looks promising.
+I still need to understand how to encode the signals so the decoder knows where to start decoding among all the noise present in the atnosphere.
+
+I also need to understand if radio antenas placed in top of mountains are there to magnify all radio waves that it detects (?)
+
+
+## 04/01/2026
+
+I have talked to Javi, my closest telecom engineer friend and has strongly recommended me to use LoRa. Not LoraWan. the difference is that LoraWan ultimately converts the packages into IP ones. We want decentralized, P2P, which is more fun and anarchic.
+
+For that, we will change the idea of using an SDR for a LoRa USB Modem. 
+
+Also, I don't need a WaveFormEncoder and anything, just the package themselves. So it makes thing way easier.

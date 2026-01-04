@@ -1,22 +1,18 @@
 #include "transmissionManager.hpp"
 #include "packageBuilder.hpp"
-#include "waveFormEncoder.hpp"
-#include "waveFormQueue.hpp"
+#include "packageQueue.hpp"
 #include <vector>
 
 TransmissionManager::TransmissionManager(PackageBuilder &packageBuilder,
-                                         WaveFormEncoder &waveFormEncoder,
-                                         WaveFormQueue &waveFormQueue)
-    : packageBuilder(packageBuilder), waveFormEncoder(waveFormEncoder),
-      waveFormQueue(waveFormQueue) {}
+                                         PackageQueue &queue)
+    : packageBuilder(packageBuilder), packageQueue(queue) {}
 
 void TransmissionManager::sendText(const std::string &text) {
   Message msg(text);
 
   std::vector<Package> packages = this->packageBuilder.build(msg);
 
-  for (const auto &p : packages) {
-    auto waveform = waveFormEncoder.encode(p.serializeToSend());
-    waveFormQueue.push(std::move(waveform));
+  for (auto &p : packages) {
+    packageQueue.push(std::move(p));
   }
 }
