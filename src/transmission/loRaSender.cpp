@@ -1,4 +1,4 @@
-#include "loRaSender.hpp"
+#include "../../include/transmission/loRaSender.hpp"
 #include <chrono>
 #include <iostream>
 #include <thread>

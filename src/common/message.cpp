@@ -1,5 +1,5 @@
-#include "message.hpp"
-#include "idGenerator.hpp"
+#include "../../include/common/message.hpp"
+#include "../../include/common/idGenerator.hpp"
 
 Message::Message(std::string payload)
     : id(IdGenerator::generate()), date(std::chrono::system_clock::now()),

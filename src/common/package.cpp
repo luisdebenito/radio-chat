@@ -1,5 +1,5 @@
-#include "package.hpp"
-#include "crcGenerator.hpp"
+#include "../../include/common/package.hpp"
+#include "../../include/common/crcGenerator.hpp"
 #include <string>
 
 const std::string Package::SEPARATOR = "|_|";

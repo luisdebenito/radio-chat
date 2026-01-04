@@ -1,6 +1,6 @@
-#include "transmissionManager.hpp"
-#include "packageBuilder.hpp"
-#include "packageQueue.hpp"
+#include "../../include/transmission/transmissionManager.hpp"
+#include "../../include/transmission/packageBuilder.hpp"
+#include "../../include/transmission/packageQueue.hpp"
 #include <vector>
 
 TransmissionManager::TransmissionManager(PackageBuilder &packageBuilder,

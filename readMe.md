@@ -1,12 +1,34 @@
-This is a c++ 20 app. 
+# Transmitter Project
 
-You need clang installed in your machine in order to compile.
+This project compiles and runs a radio transmitter program using technology from a LoRa USB Modem written in C++.
 
-Just need to run 
+## Project Structure
 
-```make```
+- main.cpp — Entry point
+- src/common/ — Common utilities (ID generator, message handling, CRC, package handling, config)
+- src/transmission/ — Transmission logic (package builder, manager, queue, LoRa sender)
+- include/ — Header files
+- build/ — Output directory for binary and config
 
-and enjoy.
+## Build and Run
+
+### Requirements
+- clang++ with C++20 support
+
+### Commands
+- Build and run:
+    `make all`
+
+- Run without building:
+    `make run`
+
+- Clean build files:
+    `make clean`
+
+- Generate default config:
+    `make config`
 
 
-If you want more info, check diary.md
+## Output
+- Compiled binary: build/transmitter
+- Config file: build/config.conf

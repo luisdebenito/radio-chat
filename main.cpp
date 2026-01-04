@@ -1,8 +1,8 @@
-#include "src/common/config.hpp"
-#include "src/transmission/loRaSender.hpp"
-#include "src/transmission/packageBuilder.hpp"
-#include "src/transmission/packageQueue.hpp"
-#include "src/transmission/transmissionManager.hpp"
+#include "include/common/config.hpp"
+#include "include/transmission/loRaSender.hpp"
+#include "include/transmission/packageBuilder.hpp"
+#include "include/transmission/packageQueue.hpp"
+#include "include/transmission/transmissionManager.hpp"
 
 #include <iostream>
 #include <string>
@@ -21,8 +21,8 @@ int main() {
   LoRaSender sender(queue, "/dev/ttyUSB0", 9600);
   sender.start(); // starts sending in background
 
+  std::cout << "Welcome \n";
   while (true) {
-    std::cout << "Enter message: ";
     std::getline(std::cin, input);
 
     if (input.empty())
