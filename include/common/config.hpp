@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <string>
 
 class Config {
@@ -10,6 +11,5 @@ public:
   int getInt(const std::string &key, int defaultValue = 0) const;
 
 private:
-  class Impl;
-  Impl *pImpl; // opaque pointer to hide implementation
+  std::map<std::string, std::string> data;
 };

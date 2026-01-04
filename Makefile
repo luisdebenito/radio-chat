@@ -1,7 +1,5 @@
 TARGET := build/transmitter
-
 CONF := build/config.conf
-
 SOURCES := \
 	main.cpp \
 	src/common/idGenerator.cpp \
@@ -19,8 +17,10 @@ SOURCES := \
 all:
 	clang++ -std=c++20 -Iinclude $(SOURCES) -o $(TARGET)
 	./$(TARGET)
+
 clean:
 	rm -f $(TARGET)
+	
 run:
 	./$(TARGET)
 
