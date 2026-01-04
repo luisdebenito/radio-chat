@@ -1,6 +1,6 @@
-# Transmitter Project
+# Decentralized LoRa Messenger Project
 
-This project compiles and runs a radio transmitter program using technology from a LoRa USB Modem written in C++.
+This project compiles and runs a message radio transmitter\receiver program using technology from a LoRa USB Modem written in C++.
 
 ## Project Structure
 
