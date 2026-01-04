@@ -9,7 +9,8 @@ SOURCES := \
 	src/transmission/packageBuilder.cpp \
 	src/transmission/transmissionManager.cpp \
 	src/transmission/packageQueue.cpp  \
-	src/transmission/loRaSender.cpp
+	src/transmission/loRaSender.cpp \
+	src/common/config.cpp
 
 .PHONY: all run clean
 

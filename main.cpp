@@ -1,3 +1,4 @@
+#include "src/common/config.hpp"
 #include "src/transmission/loRaSender.hpp"
 #include "src/transmission/packageBuilder.hpp"
 #include "src/transmission/packageQueue.hpp"
@@ -7,6 +8,11 @@
 #include <string>
 
 int main() {
+  Config cfg("build/config.conf");
+  int maxBytes = cfg.getInt("maxBytes", 64);
+  std::string devicePort = cfg.getString("devicePort", "/dev/ttyUSB0");
+  int baudRate = cfg.getInt("baudRate", 9600);
+
   std::string input;
   PackageBuilder builder(64); // max bytes per package
   PackageQueue queue;

@@ -95,8 +95,10 @@ I also need to understand if radio antenas placed in top of mountains are there 
 
 ## 04/01/2026
 
-I have talked to Javi, my closest telecom engineer friend and has strongly recommended me to use LoRa. Not LoraWan. the difference is that LoraWan ultimately converts the packages into IP ones. We want decentralized, P2P, which is more fun and anarchic.
+I have talked to Javi, my closest telecom engineer friend and has strongly recommended me to use LoRa. Not LoraWan. the difference is that LoraWan ultimately converts the packages into IP ones using the gateway. We want decentralized, P2P, which is more fun and anarchic.
 
 For that, we will change the idea of using an SDR for a LoRa USB Modem. 
 
 Also, I don't need a WaveFormEncoder and anything, just the package themselves. So it makes thing way easier.
+
+Cool, so now we have a loRaSender that consumes the queue and "prints" the serialized package that it'd send, I guess I need to buy a LoRa USB modem.
