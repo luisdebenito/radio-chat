@@ -5,7 +5,7 @@ SOURCES := $(shell find . -name '*.cpp')
 .PHONY: all run clean
 
 all:
-	clang++ -std=c++20 -Iinclude $(SOURCES) -o $(TARGET)
+	clang++ -std=c++20 -Iinclude $(SOURCES) -o $(TARGET) -lX11
 	./$(TARGET)
 
 clean:

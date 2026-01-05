@@ -4,8 +4,10 @@
 #include "include/transmission/packageQueue.hpp"
 #include "include/transmission/transmissionManager.hpp"
 
+#include <X11/Xlib.h>
 #include <iostream>
 #include <string>
+#include <unistd.h>
 
 int main() {
   Config cfg("build/config.conf");
@@ -21,6 +23,23 @@ int main() {
   LoRaSender sender(queue, "/dev/ttyUSB0", 9600);
   sender.start(); // starts sending in background
 
+  Display *display = XOpenDisplay(nullptr);
+  if (!display) {
+    return 1;
+  }
+
+  int screen = DefaultScreen(display);
+
+  Window window = XCreateSimpleWindow(
+      display, RootWindow(display, screen), 100, 100, // x, y
+      400, 300,                                       // width, height
+      1,                                              // border width
+      BlackPixel(display, screen), WhitePixel(display, screen));
+
+  XStoreName(display, window, "Decentralized LoRa Messenger");
+  XMapWindow(display, window);
+  XFlush(display);
+
   std::cout << "Welcome \n";
   while (true) {
     std::getline(std::cin, input);
@@ -33,6 +52,8 @@ int main() {
 
     trnsmManager.sendText(input);
   }
+
+  XCloseDisplay(display);
 
   sender.stop(); // stop sender gracefully
   return 0;

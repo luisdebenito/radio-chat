@@ -106,3 +106,5 @@ Cool, so now we have a loRaSender that consumes the queue and "prints" the seria
 ## 05/01/2026
 
 Until I get the LoRa USB Modem and everything, I think I will do a small class called Chat to collect all the messages sent and received (built from packages). Then at some point I'll use this chat to show it in the screen. Also, I am thinking of creating a json file with the chat history. Would I use a db like sqlite? I could, but sounds overkill atm.
+
+I will use X11 directly, I needed to install de libX11-dev package to properly work with it. It looks ok so far, I have gotten to the point of opening an empty window.

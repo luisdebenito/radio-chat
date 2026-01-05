@@ -13,7 +13,8 @@ This project compiles and runs a message radio transmitter\receiver program usin
 ## Build and Run
 
 ### Requirements
-- clang++ with C++20 support
+- clang++ with C++20 support, linux only (X11)
+`sudo apt install libx11-dev clang`
 
 ### Commands
 - Build and run:
