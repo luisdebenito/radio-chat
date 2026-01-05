@@ -5,7 +5,6 @@
 #include "include/transmission/packageQueue.hpp"
 #include "include/transmission/transmissionManager.hpp"
 
-#include <iostream>
 #include <string>
 
 int main() {
@@ -26,16 +25,14 @@ int main() {
     return 1;
   }
 
-  std::string input;
+  std::string text;
   while (true) {
-    std::getline(std::cin, input);
-
-    if (input.empty())
-      continue;
-    if (input == "exit")
+    if (window.pollClose())
       break;
 
-    trnsmManager.sendText(input);
+    if (window.pollLine(text)) {
+      trnsmManager.sendText(text);
+    }
   }
 
   sender.stop();

@@ -39,7 +39,7 @@ void LoRaSender::run() {
 bool LoRaSender::sendPackage(const Package &pkg) {
   // Replace with your USB LoRa write function
   std::string data = pkg.serializeToSend();
-  std::cout << "[LoRa SEND] " << data << std::endl;
+  std::cout << data << std::endl;
   // TODO: send 'data' to the LoRa modem
   return true; // return false if send failed
 }
