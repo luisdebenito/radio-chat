@@ -102,3 +102,7 @@ For that, we will change the idea of using an SDR for a LoRa USB Modem.
 Also, I don't need a WaveFormEncoder and anything, just the package themselves. So it makes thing way easier.
 
 Cool, so now we have a loRaSender that consumes the queue and "prints" the serialized package that it'd send, I guess I need to buy a LoRa USB modem.
+
+## 05/01/2026
+
+Until I get the LoRa USB Modem and everything, I think I will do a small class called Chat to collect all the messages sent and received (built from packages). Then at some point I'll use this chat to show it in the screen. Also, I am thinking of creating a json file with the chat history. Would I use a db like sqlite? I could, but sounds overkill atm.

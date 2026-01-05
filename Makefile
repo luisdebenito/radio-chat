@@ -1,16 +1,6 @@
 TARGET := build/transmitter
 CONF := build/config.conf
-SOURCES := \
-	main.cpp \
-	src/common/idGenerator.cpp \
-	src/common/message.cpp \
-	src/common/crcGenerator.cpp \
-	src/common/package.cpp \
-	src/common/config.cpp \
-	src/transmission/packageBuilder.cpp \
-	src/transmission/transmissionManager.cpp \
-	src/transmission/packageQueue.cpp  \
-	src/transmission/loRaSender.cpp 
+SOURCES := $(shell find . -name '*.cpp')
 
 .PHONY: all run clean
 
