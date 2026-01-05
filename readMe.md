@@ -18,7 +18,7 @@ This project compiles and runs a message radio transmitter\receiver program usin
 
 ### Commands
 - Build and run:
-    `make all`
+    `make`
 
 - Run without building:
     `make run`
