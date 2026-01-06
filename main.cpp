@@ -1,3 +1,4 @@
+#include "include/common/chat.hpp" // include the Chat class
 #include "include/common/config.hpp"
 #include "include/gui/X11Window.hpp"
 #include "include/transmission/loRaSender.hpp"
@@ -17,10 +18,12 @@ int main() {
   PackageQueue queue;
   TransmissionManager trnsmManager(builder, queue);
 
+  Chat chat;
+
   LoRaSender sender(queue, devicePort, baudRate);
   sender.start();
 
-  X11Window window("Decentralized LoRa Messenger", 400, 600);
+  X11Window window("Decentralized LoRa Messenger", 400, 600, chat);
   if (!window.isValid()) {
     return 1;
   }
@@ -31,7 +34,9 @@ int main() {
       break;
 
     if (window.pollLine(text)) {
+      chat.addMessage(text, true);
       trnsmManager.sendText(text);
+      window.redraw();
     }
   }
 

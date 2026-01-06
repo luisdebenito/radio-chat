@@ -2,8 +2,8 @@
 #include <X11/Xutil.h>  // Utilities like XLookupString
 #include <X11/keysym.h> // Key symbol definitions (XK_Return, XK_BackSpace, etc.)
 
-X11Window::X11Window(const std::string &title, int w, int h)
-    : width(w), height(h) {
+X11Window::X11Window(const std::string &title, int w, int h, Chat &chatRef)
+    : width(w), height(h), chat(chatRef) {
 
   // Open connection to X server (nullptr = default DISPLAY)
   display = XOpenDisplay(nullptr);
@@ -49,6 +49,14 @@ bool X11Window::isValid() const { return display != nullptr; }
 // Redraw the window
 void X11Window::redraw() {
   XClearWindow(display, window); // clear window to background color
+
+  int y = 20; // start from top for chat messages
+  for (const auto &msg : chat.getMessages()) {
+    int x = msg.sent ? 10
+                     : width - 10 - msg.text.size() * 8; // left/right alignment
+    XDrawString(display, window, gc, x, y, msg.text.c_str(), msg.text.size());
+    y += 20; // next line
+  }
 
   int lineY = height - 20; // horizontal line position 20px from bottom
 

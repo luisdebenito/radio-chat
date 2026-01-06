@@ -1,17 +1,17 @@
 #pragma once
+#include "../common/chat.hpp"
 #include <X11/Xlib.h>
 #include <string>
 
 class X11Window {
 public:
-  X11Window(const std::string &title, int width, int height);
+  X11Window(const std::string &title, int width, int height, Chat &chatRef);
   ~X11Window();
 
   bool isValid() const;
   bool pollClose();
   bool pollLine(std::string &out); // ENTER → returns line
 
-private:
   void redraw();
 
   Display *display = nullptr;
@@ -24,4 +24,6 @@ private:
   Atom wmDeleteMessage;
   std::string inputBuffer;
   bool lineReady = false;
+
+  Chat &chat;
 };
