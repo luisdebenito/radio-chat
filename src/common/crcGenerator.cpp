@@ -1,5 +1,4 @@
 #include "../../include/common/crcGenerator.hpp"
-#include <chrono>
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -20,13 +19,8 @@ static uint32_t crc32(const uint8_t *data, size_t len) {
 }
 
 // New compute method: pass id, text, and date
-uint32_t
-CRCGenerator::compute(const std::string &text,
-                      const std::chrono::system_clock::time_point &date) {
-  // Convert date to a stable uint64_t representation
-  uint64_t timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(
-                           date.time_since_epoch())
-                           .count();
+uint32_t CRCGenerator::compute(const std::string &text,
+                               const uint64_t timestamp) {
 
   // Concatenate data as bytes
   std::vector<uint8_t> buffer;

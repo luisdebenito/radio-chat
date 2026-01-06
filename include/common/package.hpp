@@ -7,7 +7,7 @@ class Package {
 public:
   Package(const std::string &text);
 
-  const std::chrono::system_clock::time_point &getDate() const;
+  const uint64_t getDateAsInt() const;
   const std::string serializeToSend() const;
   const std::string &getText() const;
 

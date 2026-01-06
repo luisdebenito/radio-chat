@@ -1,10 +1,8 @@
 #pragma once
-#include <chrono>
 #include <cstdint>
 #include <string>
 
 class CRCGenerator {
 public:
-  static uint32_t compute(const std::string &text,
-                          const std::chrono::system_clock::time_point &date);
+  static uint32_t compute(const std::string &text, const uint64_t timestamp);
 };

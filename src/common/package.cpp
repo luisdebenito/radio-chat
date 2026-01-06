@@ -6,16 +6,18 @@ const std::string Package::SEPARATOR = "|_|";
 
 Package::Package(const std::string &t)
     : text(t), date(std::chrono::system_clock::now()),
-      crc(CRCGenerator::compute(text, date)) {}
+      crc(CRCGenerator::compute(text, getDateAsInt())) {}
 
 /// @brief [ID][DATE][PAYLOAD][CRC]
 const std::string Package::serializeToSend() const {
-  return std::to_string(std::chrono::system_clock::to_time_t(date)) +
-         this->SEPARATOR + text + this->SEPARATOR + std::to_string(crc);
+  return std::to_string(getDateAsInt()) + this->SEPARATOR + text +
+         this->SEPARATOR + std::to_string(crc);
 }
 
-const std::chrono::system_clock::time_point &Package::getDate() const {
-  return date;
+const uint64_t Package::getDateAsInt() const {
+  return std::chrono::duration_cast<std::chrono::milliseconds>(
+             date.time_since_epoch())
+      .count();
 }
 
 const std::string &Package::getText() const { return text; }
