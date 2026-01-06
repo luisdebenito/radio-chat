@@ -26,7 +26,7 @@ void LoRaSender::run() {
     if (!queue.empty()) {
       Package pkg = queue.pop();
       if (!sendPackage(pkg)) {
-        std::cerr << "[LoRaSender] Failed to send package " << pkg.getId()
+        std::cerr << "[LoRaSender] Failed to send package " << pkg.getText()
                   << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
       }

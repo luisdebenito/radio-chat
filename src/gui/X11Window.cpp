@@ -106,7 +106,7 @@ bool X11Window::pollClose() {
 
       if (key == XK_BackSpace && !inputBuffer.empty()) {
         inputBuffer.pop_back();
-      } else if (key == XK_Return) {
+      } else if (key == XK_Return && !inputBuffer.empty()) {
         lineReady = true;
       } else if (len == 1 && buf[0] >= 32 && buf[0] <= 126 &&
                  inputBuffer.size() < maxInputSize) {

@@ -21,7 +21,7 @@ static uint32_t crc32(const uint8_t *data, size_t len) {
 
 // New compute method: pass id, text, and date
 uint32_t
-CRCGenerator::compute(const std::string &id, const std::string &text,
+CRCGenerator::compute(const std::string &text,
                       const std::chrono::system_clock::time_point &date) {
   // Convert date to a stable uint64_t representation
   uint64_t timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -40,7 +40,6 @@ CRCGenerator::compute(const std::string &id, const std::string &text,
       buffer.push_back((v >> (i * 8)) & 0xFF);
   };
 
-  append_str(id);
   append_uint64(timestamp);
   append_str(text);
 
