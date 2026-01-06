@@ -11,6 +11,9 @@ int main() {
   Config cfg("build/config.conf");
   std::string devicePort = cfg.getString("devicePort", "/dev/ttyUSB0");
   int baudRate = cfg.getInt("baudRate", 9600);
+  int maxInputSize = cfg.getInt("maxInputSize", 80);
+  int windowWidth = cfg.getInt("windowWidth", 400);
+  int windowHeight = cfg.getInt("windowHeight", 600);
 
   PackageQueue queue;
   Chat chat;
@@ -18,7 +21,8 @@ int main() {
   TransmissionManager trnsmManager(queue);
   LoRaSender sender(queue, devicePort, baudRate);
 
-  X11Window window("Decentralized LoRa Messenger", 400, 600, chat);
+  X11Window window("Decentralized LoRa Messenger", windowWidth, windowHeight,
+                   static_cast<size_t>(maxInputSize), chat);
   if (!window.isValid()) {
     return 1;
   }

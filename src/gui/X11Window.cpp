@@ -2,8 +2,9 @@
 #include <X11/Xutil.h>  // Utilities like XLookupString
 #include <X11/keysym.h> // Key symbol definitions (XK_Return, XK_BackSpace, etc.)
 
-X11Window::X11Window(const std::string &title, int w, int h, Chat &chatRef)
-    : width(w), height(h), chat(chatRef) {
+X11Window::X11Window(const std::string &title, int w, int h, size_t maxInput,
+                     Chat &chatRef)
+    : width(w), height(h), maxInputSize(maxInput), chat(chatRef) {
 
   // Open connection to X server (nullptr = default DISPLAY)
   display = XOpenDisplay(nullptr);
@@ -15,6 +16,16 @@ X11Window::X11Window(const std::string &title, int w, int h, Chat &chatRef)
   window = XCreateSimpleWindow(display, RootWindow(display, screen), 100, 100,
                                width, height, 1, BlackPixel(display, screen),
                                WhitePixel(display, screen));
+
+  // Disable window resizing
+  XSizeHints sizeHints;
+  sizeHints.flags = PMinSize | PMaxSize;
+  sizeHints.min_width = width;
+  sizeHints.min_height = height;
+  sizeHints.max_width = width;
+  sizeHints.max_height = height;
+
+  XSetWMNormalHints(display, window, &sizeHints);
 
   // Set window title for window manager
   XStoreName(display, window, title.c_str());
@@ -91,18 +102,18 @@ bool X11Window::pollClose() {
     if (ev.type == KeyPress) {
       KeySym key;
       char buf[8];
-      int len = XLookupString(&ev.xkey, buf, sizeof(buf), &key,
-                              nullptr); // translate key press to string
+      int len = XLookupString(&ev.xkey, buf, sizeof(buf), &key, nullptr);
 
-      if (key == XK_BackSpace && !inputBuffer.empty()) { // remove last char
+      if (key == XK_BackSpace && !inputBuffer.empty()) {
         inputBuffer.pop_back();
-      } else if (key == XK_Return) { // Enter key pressed
-        lineReady = true;            // mark line ready to send
-      } else if (len == 1 && buf[0] >= 32 && buf[0] <= 126) { // printable ASCII
-        inputBuffer += buf[0]; // append char to input buffer
+      } else if (key == XK_Return) {
+        lineReady = true;
+      } else if (len == 1 && buf[0] >= 32 && buf[0] <= 126 &&
+                 inputBuffer.size() < maxInputSize) {
+        inputBuffer += buf[0]; // only append if under limit
       }
 
-      redraw(); // update window to reflect new input
+      redraw();
     }
   }
   return false; // no close event

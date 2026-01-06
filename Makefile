@@ -15,6 +15,8 @@ run:
 	./$(TARGET)
 
 config:
-	@echo "maxBytes=64" > $(CONF)
+	@echo "maxInputSize=80" >> $(CONF)
+	@echo "windowWidth=800" >> $(CONF)
+	@echo "windowHeight=400" >> $(CONF)
 	@echo "devicePort=/dev/ttyUSB0" >> $(CONF)
 	@echo "baudRate=9600" >> $(CONF)

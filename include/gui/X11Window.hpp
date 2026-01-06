@@ -5,7 +5,8 @@
 
 class X11Window {
 public:
-  X11Window(const std::string &title, int width, int height, Chat &chatRef);
+  X11Window(const std::string &title, int width, int height,
+            size_t maxInputSize, Chat &chatRef);
   ~X11Window();
 
   bool isValid() const;
@@ -24,6 +25,8 @@ public:
   Atom wmDeleteMessage;
   std::string inputBuffer;
   bool lineReady = false;
+
+  size_t maxInputSize; // maximum allowed input length
 
   Chat &chat;
 };
