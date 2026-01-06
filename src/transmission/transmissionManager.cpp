@@ -1,18 +1,10 @@
 #include "../../include/transmission/transmissionManager.hpp"
-#include "../../include/transmission/packageBuilder.hpp"
 #include "../../include/transmission/packageQueue.hpp"
-#include <vector>
 
-TransmissionManager::TransmissionManager(PackageBuilder &packageBuilder,
-                                         PackageQueue &queue)
-    : packageBuilder(packageBuilder), packageQueue(queue) {}
+TransmissionManager::TransmissionManager(PackageQueue &queue)
+    : packageQueue(queue) {}
 
 void TransmissionManager::sendText(const std::string &text) {
-  Message msg(text);
-
-  std::vector<Package> packages = this->packageBuilder.build(msg);
-
-  for (auto &p : packages) {
-    packageQueue.push(std::move(p));
-  }
+  Package package(text);
+  packageQueue.push(std::move(package));
 }
