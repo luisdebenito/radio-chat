@@ -113,3 +113,5 @@ I will use X11 directly, I needed to install de libX11-dev package to properly w
 ## 06/01/2026
 
 I have decided to make it a bit easier, we are going to cut the packageBuilder, there will only be one package per message, as we are going to limit the text sent, it has to be a tool like sms, not to talk, but rather to send important messages, as short as possible.
+
+Okey, facing the future LoRa sender, I think the more sensible thing to do is not wait until we get the ACK back, as there is a lot of different issues it may include, so why don't we just send the same package N times with an exponential time difference, and then pop it from the queue?
