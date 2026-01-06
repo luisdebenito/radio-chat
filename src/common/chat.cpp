@@ -1,8 +1,10 @@
 #include "../../include/common/chat.hpp"
 
+Chat::Chat(int maxChatHistory) : maxChatHistory(maxChatHistory) {}
+
 void Chat::addMessage(const std::string &text, bool sent) {
   messages.push_back({text, sent});
-  if (messages.size() > 30) {
+  if (messages.size() > maxChatHistory) {
     messages.erase(messages.begin()); // remove oldest message
   }
 }

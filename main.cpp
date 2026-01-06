@@ -14,9 +14,10 @@ int main() {
   int maxInputSize = cfg.getInt("maxInputSize", 80);
   int windowWidth = cfg.getInt("windowWidth", 400);
   int windowHeight = cfg.getInt("windowHeight", 600);
+  int maxChatHistory = cfg.getInt("maxChatHistory", 30);
 
   PackageQueue queue;
-  Chat chat;
+  Chat chat(maxChatHistory);
 
   TransmissionManager trnsmManager(queue);
   LoRaSender sender(queue, devicePort, baudRate);

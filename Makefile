@@ -15,7 +15,9 @@ run:
 	./$(TARGET)
 
 config:
+	rm -f $(CONF)
 	@echo "maxInputSize=80" >> $(CONF)
+	@echo "maxChatHistory=30" >> $(CONF)
 	@echo "windowWidth=800" >> $(CONF)
 	@echo "windowHeight=400" >> $(CONF)
 	@echo "devicePort=/dev/ttyUSB0" >> $(CONF)
